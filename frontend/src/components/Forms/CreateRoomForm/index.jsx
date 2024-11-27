@@ -14,11 +14,12 @@ const CreateRoomForm = ({ uuid, socket, setUser, setMyPeer }) => {
     // {name,roomId, userId, host, presenter}
 
     const myPeer = new Peer(undefined, {
-      host: "/",
-      port: 5001,
-      path: "/",
-      secure: false,
-    });
+  host: "localhost",
+  port: 5001,
+  path: "/peerjs",
+  secure: false,  // Set to `true` if using HTTPS
+});
+
 
     setMyPeer(myPeer);
 
@@ -37,7 +38,7 @@ const CreateRoomForm = ({ uuid, socket, setUser, setMyPeer }) => {
     });
     myPeer.on("error", (err) => {
       console.log("peer connection error", err);
-      this.myPeer.reconnect();
+      myPeer.reconnect();
     });
   };
 
